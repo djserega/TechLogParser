@@ -19,5 +19,6 @@ namespace TechLogParser.Model
         public string Name { get; set; }
         public string FullName { get; set; }
         public List<FileLog> FileLogs { get; set; } = new List<FileLog>();
+        public bool FileLogsIsEmpty { get => FileLogs.Count == 0; }
     }
 }

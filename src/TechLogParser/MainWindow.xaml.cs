@@ -127,13 +127,16 @@ namespace TechLogParser
                     Model.FileLog fileLog = new Model.FileLog(pathFile);
                     fileLog.ParseTextFileLog();
 
-                    directoryLog.FileLogs.Add(fileLog);
+                    if (!fileLog.DataLogsIsEmpty)
+                        directoryLog.FileLogs.Add(fileLog);
                 }
 
-                listLog.Add(directoryLog);
+                if (!directoryLog.FileLogsIsEmpty)
+                    listLog.Add(directoryLog);
             }
 
-            ListLog = new ObservableCollection<Model.DirectoryLog>(listLog);
+            if (listLog.Count > 0)
+                ListLog = new ObservableCollection<Model.DirectoryLog>(listLog);
         }
     }
 }
