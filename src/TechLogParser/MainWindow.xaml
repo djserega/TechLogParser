@@ -73,8 +73,19 @@
                       AutoGenerateColumns="False"
                       ItemsSource="{Binding ListLogSelectedItemFileLogsDataLogs}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=\{0:yyyy.MM.dd HH:mm:ss\}}"/>
-                    <DataGridTextColumn Header="Запись" Binding="{Binding Text}" MaxWidth="800">
+                    <DataGridTemplateColumn Header="Детали записи">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Date, StringFormat=\{0:yyyy.MM.dd HH:mm:ss\}}"/>
+                                    <TextBlock Text="{Binding ProcessName}"/>
+                                    <TextBlock Text="{Binding ComputerName}"/>
+                                    <TextBlock Text="{Binding User}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Запись" Binding="{Binding FullText}" MaxWidth="1000">
                         <DataGridTextColumn.CellStyle>
                             <Style>
                                 <Setter Property="TextBlock.TextWrapping" Value="WrapWithOverflow"/>
