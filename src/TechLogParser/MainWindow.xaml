@@ -8,11 +8,10 @@
         mc:Ignorable="d"
         x:Name="Main"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="2">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
@@ -22,22 +21,25 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition />
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
+     
             <Label Grid.Column="0"
-                   Content="Путь к каталогу логов:"/>
+                   Content="Каталог логов:"/>
             <TextBox Grid.Column="1"
                      VerticalContentAlignment="Center"
+                     Margin="0 0 2 0"
                      Text="{Binding PathLogs}"/>
             <Button Grid.Column="2"
                     Content="..."
+                    Margin="0 0 1 0"
                     Click="ButtonSelectPath_Click"/>
-        </Grid>
-
-        <Button Grid.Row="1"
+            <Button Grid.Column="3"
                 Content="Прочитать"
                 Click="ButtonReadPathLog_Click"/>
+        </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
@@ -50,18 +52,19 @@
                       ItemsSource="{Binding ListLog}"
                       SelectedItem="{Binding ListLogSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Имя каталога" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Полный путь" Binding="{Binding FullName}"/>
+                    <DataGridTextColumn Header="Каталог" Binding="{Binding Name}"/>
+                    <!--<DataGridTextColumn Header="Полный путь" Binding="{Binding FullName}"/>-->
                 </DataGrid.Columns>
             </DataGrid>
 
             <DataGrid Grid.Column="1"
                       IsReadOnly="True"
                       AutoGenerateColumns="False"
+                      Background="AntiqueWhite"
                       ItemsSource="{Binding ListLogSelectedItemFileLogs}"
                       SelectedItem="{Binding ListLogSelectedItemFileLogsSelectedItem}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Имя файла" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Файл" Binding="{Binding Name}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -74,8 +77,7 @@
                     <DataGridTextColumn Header="Запись" Binding="{Binding Text}" MaxWidth="800">
                         <DataGridTextColumn.CellStyle>
                             <Style>
-                                <!--<Setter Property="TextBlock.MaxHeight" Value="100"/>-->
-                                <Setter Property="TextBlock.ToolTip" Value="{Binding Text}"/>
+                                <Setter Property="TextBlock.TextWrapping" Value="WrapWithOverflow"/>
                             </Style>
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
