@@ -91,7 +91,17 @@ namespace TechLogParser
         }
         public static readonly DependencyProperty ListLogSelectedItemFileLogsDataLogsProperty =
             DependencyProperty.Register("ListLogSelectedItemFileLogsDataLogs", typeof(ObservableCollection<Model.DataLog>), typeof(MainWindow));
-        
+
+        public bool IsEmptyLog
+        {
+            get { return (bool)GetValue(IsEmptyLogProperty); }
+            set { SetValue(IsEmptyLogProperty, value); }
+        }
+        public static readonly DependencyProperty IsEmptyLogProperty =
+            DependencyProperty.Register("IsEmptyLog", typeof(bool), typeof(MainWindow));
+
+
+
 
         private void ButtonSelectPath_Click(object sender, RoutedEventArgs e)
         {
@@ -127,15 +137,15 @@ namespace TechLogParser
                     Model.FileLog fileLog = new Model.FileLog(pathFile);
                     fileLog.ParseTextFileLog();
 
-                    if (!fileLog.DataLogsIsEmpty)
+                    if (IsEmptyLog || !fileLog.DataLogsIsEmpty)
                         directoryLog.FileLogs.Add(fileLog);
                 }
 
-                if (!directoryLog.FileLogsIsEmpty)
+                if (IsEmptyLog || !directoryLog.FileLogsIsEmpty)
                     listLog.Add(directoryLog);
             }
 
-            if (listLog.Count > 0)
+            if (IsEmptyLog || listLog.Count > 0)
                 ListLog = new ObservableCollection<Model.DirectoryLog>(listLog);
         }
     }

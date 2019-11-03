@@ -21,6 +21,8 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
      
             <Label Grid.Column="0"
@@ -34,8 +36,14 @@
                     Margin="0 0 1 0"
                     Click="ButtonSelectPath_Click"/>
             <Button Grid.Column="3"
-                Content="Прочитать"
-                Click="ButtonReadPathLog_Click"/>
+                    Content="Прочитать"
+                    Click="ButtonReadPathLog_Click"/>
+            <Label Grid.Column="4"
+                   Content="Все файлы"
+                   VerticalAlignment="Center"
+                   ToolTip="Сняв флаг будут отфильтрованы файлы без данных."/>
+            <CheckBox Grid.Column="5"
+                      IsChecked="{Binding IsEmptyLog}"/>
         </Grid>
 
         <Grid Grid.Row="1">
