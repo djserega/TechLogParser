@@ -37,6 +37,7 @@
                     Click="ButtonSelectPath_Click"/>
             <Button Grid.Column="3"
                     Content="Прочитать"
+                    Margin="1 0 0 0"
                     Click="ButtonReadPathLog_Click"/>
             <Label Grid.Column="4"
                    Content="Все файлы"
@@ -46,7 +47,8 @@
                       IsChecked="{Binding IsEmptyLog}"/>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1"
+              Margin="0 3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
